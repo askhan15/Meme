@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>❤️ A Surprise For My Love ❤️</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: #ffe6ee;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    background:white;
+    width:100%;
+    max-width:450px;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
+
+h2{
+    text-align:center;
+    color:#e91e63;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:8px 0 15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#e91e63;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#c2185b;
+}
+
+#error{
+    color:red;
+    margin-top:10px;
+    text-align:center;
+}
+
+#surprise{
+    display:none;
+    text-align:center;
+}
+
+#surprise img{
+    max-width:100%;
+    border-radius:12px;
+    margin-top:15px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div id="quiz">
+
+<h2>❤️ One Small Challenge ❤️</h2>
+
+<label>Where did we first meet?</label>
+<input type="text" id="q1">
+
+<label>What nickname do I call you?</label>
+<input type="text" id="q2">
+
+<button onclick="checkAnswers()">Unlock ❤️</button>
+
+<p id="error"></p>
+
+</div>
+
+<div id="surprise">
+
+<h2>❤️ I Love You ❤️</h2>
+
+wife-photo.jpg
+
+<p>
+You are the best thing that ever happened to me ❤️
+</p>
+
+</div>
+
+</div>
+
+<script>
+function checkAnswers() {
+
+    const answer1 = "university";
+    const answer2 = "meri jaan";
+
+    const q1 = document.getElementById("q1").value.trim().toLowerCase();
+    const q2 = document.getElementById("q2").value.trim().toLowerCase();
+
+    if(q1 === answer1 && q2 === answer2) {
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("surprise").style.display = "block";
+    } else {
+        document.getElementById("error").innerText =
+            "Oops ❤️ One or both answers are incorrect.";
+    }
+}
+</script>
+
+</body>
+</html>
