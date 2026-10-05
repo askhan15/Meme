@@ -29,7 +29,6 @@
 
         h1 {
             color: #e91e63;
-            margin-bottom: 25px;
         }
 
         h2 {
@@ -50,7 +49,7 @@
             border-radius: 10px;
             font-size: 16px;
             text-align: center;
-            outline: none;
+            box-sizing: border-box;
         }
 
         button {
@@ -62,12 +61,10 @@
             font-size: 16px;
             cursor: pointer;
             margin-top: 15px;
-            transition: 0.3s;
         }
 
         button:hover {
             background: #c2185b;
-            transform: scale(1.05);
         }
 
         #surprise {
@@ -84,8 +81,6 @@
             max-height: 500px;
             object-fit: contain;
             border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            transition: opacity 0.5s ease;
         }
 
         .message {
@@ -105,7 +100,6 @@
         .error {
             color: #e91e63;
             margin-top: 10px;
-            font-size: 14px;
         }
 
         .poetry {
@@ -118,23 +112,7 @@
             font-size: 21px;
             font-weight: bold;
             line-height: 1.7;
-            text-shadow:
-                2px 2px 5px rgba(0,0,0,0.8),
-                0 0 10px rgba(0,0,0,0.7);
-        }
-
-        @media (max-width: 500px) {
-            .card {
-                padding: 20px;
-            }
-
-            .message {
-                font-size: 18px;
-            }
-
-            .poetry {
-                font-size: 17px;
-            }
+            text-shadow: 2px 2px 6px black;
         }
     </style>
 </head>
@@ -143,7 +121,7 @@
 
 <div class="card">
 
-    <!-- QUIZ SECTION -->
+    <!-- QUIZ -->
     <div id="quiz">
 
         <h1>❤️ A Surprise For My Love ❤️</h1>
@@ -175,7 +153,7 @@
     </div>
 
 
-    <!-- SURPRISE SECTION -->
+    <!-- SURPRISE -->
     <div id="surprise">
 
         <h1 id="title">❤️ For My Meme ❤️</h1>
@@ -184,7 +162,7 @@
 
             <img id="mainPhoto" src="wife-photo1.jpg" alt="Our Memory">
 
-            <div id="poetry" class="poetry" style="display:none;"></div>
+            <div id="poetry" class="poetry"></div>
 
         </div>
 
@@ -207,12 +185,9 @@
 
 <script>
 
-    // Correct answers
     const answer1 = "meeru";
     const answer2 = "memo";
 
-
-    // Photos
     const photos = [
         "wife-photo1.jpg",
         "wife-photo2.jpg",
@@ -220,26 +195,18 @@
         "wife-photo4.jpg"
     ];
 
-
-    // Messages for each photo
     const messages = [
-
-        // Photo 1
         "Dekho... main bhi gussa hoon. 😠❤️",
 
-        // Photo 2
         "Lekin main apni Meme se zyada der gussa reh hi nahi sakta... " +
         "meri zindagi tumhare bina bilkul khaali hai. ❤️<br><br>" +
         "I love you, Meme. ❤️",
 
-        // Photo 3
         "Meri zindagi ki do sab se qeemti cheezein... ❤️<br><br>" +
         "Dono meri Meme se hain. ❤️",
 
-        // Photo 4
         ""
     ];
-
 
     let currentPhoto = 0;
 
@@ -247,30 +214,20 @@
     function checkAnswers() {
 
         const userAnswer1 =
-            document.getElementById("answer1").value
-            .trim()
-            .toLowerCase();
+            document.getElementById("answer1").value.trim().toLowerCase();
 
         const userAnswer2 =
-            document.getElementById("answer2").value
-            .trim()
-            .toLowerCase();
+            document.getElementById("answer2").value.trim().toLowerCase();
 
-
-        if (
-            userAnswer1 === answer1 &&
-            userAnswer2 === answer2
-        ) {
+        if (userAnswer1 === answer1 && userAnswer2 === answer2) {
 
             document.getElementById("quiz").style.display = "none";
-
             document.getElementById("surprise").style.display = "block";
 
         } else {
 
             document.getElementById("error").innerHTML =
                 "Hmm... try again, Meme ❤️";
-
         }
     }
 
@@ -279,53 +236,37 @@
 
         currentPhoto++;
 
-
-        // If we reach the final photo
-        if (currentPhoto === 3) {
-
-            document.getElementById("mainPhoto").src =
-                photos[currentPhoto];
-
-            // Hide everything except the final picture
-            document.getElementById("title").style.display = "none";
-
-            document.getElementById("message").style.display = "none";
-
-            document.getElementById("progress").style.display = "none";
-
-            document.getElementById("nextButton").style.display = "none";
-
-
-            // Final poetry
-            const poetry = document.getElementById("poetry");
-
-            poetry.innerHTML =
-                "Tum ho toh sab kuch hai,<br>" +
-                "Tum nahi toh kuch bhi nahi...<br><br>" +
-
-                "Meri har khushi tum se hai,<br>" +
-                "Meri har dua tumhare liye hai...<br><br>" +
-
-                "Bas yunhi mera haath pakar kar,<br>" +
-                "Mere saath zindagi bhar chalna... ❤️";
-
-            poetry.style.display = "block";
-
+        if (currentPhoto >= photos.length) {
             return;
         }
 
-
-        // Show next photo
         document.getElementById("mainPhoto").src =
             photos[currentPhoto];
 
-        // Show corresponding message
-        document.getElementById("message").innerHTML =
-            messages[currentPhoto];
 
-        // Update progress
-        document.getElementById("progress").innerHTML =
-            (currentPhoto + 1) + " / 4";
+        if (currentPhoto === 3) {
+
+            document.getElementById("title").style.display = "none";
+            document.getElementById("message").style.display = "none";
+            document.getElementById("progress").style.display = "none";
+            document.getElementById("nextButton").style.display = "none";
+
+            document.getElementById("poetry").innerHTML =
+                "Tum ho toh sab kuch hai,<br>" +
+                "Tum nahi toh kuch bhi nahi...<br><br>" +
+                "Meri har khushi tum se hai,<br>" +
+                "Meri har dua tumhare liye hai...<br><br>" +
+                "Bas yunhi mera haath pakar kar,<br>" +
+                "Mere saath zindagi bhar chalna... ❤️";
+
+        } else {
+
+            document.getElementById("message").innerHTML =
+                messages[currentPhoto];
+
+            document.getElementById("progress").innerHTML =
+                (currentPhoto + 1) + " / 4";
+        }
     }
 
 </script>
