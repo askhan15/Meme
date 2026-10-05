@@ -1,130 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>❤️ A Surprise For My Love ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Surprise For My Love ❤️</title>
 
-<style>
-body{
-    font-family: Arial, sans-serif;
-    background: #ffe6ee;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    margin:0;
-    padding:20px;
-}
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd6e7, #fff0f5);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-.container{
-    background:white;
-    width:100%;
-    max-width:450px;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.2);
-}
+        .card {
+            background: white;
+            width: 90%;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-align: center;
+        }
 
-h2{
-    text-align:center;
-    color:#e91e63;
-}
+        h1 {
+            color: #e91e63;
+            margin-bottom: 25px;
+        }
 
-input{
-    width:100%;
-    padding:12px;
-    margin:8px 0 15px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    box-sizing:border-box;
-}
+        h2 {
+            color: #444;
+        }
 
-button{
-    width:100%;
-    padding:12px;
-    background:#e91e63;
-    color:white;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
-}
+        p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+        }
 
-button:hover{
-    background:#c2185b;
-}
+        input {
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #f8bbd0;
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: center;
+            outline: none;
+        }
 
-#error{
-    color:red;
-    margin-top:10px;
-    text-align:center;
-}
+        button {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
 
-#surprise{
-    display:none;
-    text-align:center;
-}
+        button:hover {
+            background: #c2185b;
+            transform: scale(1.05);
+        }
 
-#surprise img{
-    max-width:100%;
-    border-radius:12px;
-    margin-top:15px;
-}
-</style>
+        #surprise {
+            display: none;
+        }
+
+        .photo-container {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .photo-container img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transition: opacity 0.5s ease;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #d81b60;
+            font-weight: bold;
+            line-height: 1.6;
+        }
+
+        .progress {
+            margin-top: 15px;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .error {
+            color: #e91e63;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .poetry {
+            position: absolute;
+            left: 50%;
+            bottom: 25px;
+            transform: translateX(-50%);
+            width: 90%;
+            color: white;
+            font-size: 21px;
+            font-weight: bold;
+            line-height: 1.7;
+            text-shadow:
+                2px 2px 5px rgba(0,0,0,0.8),
+                0 0 10px rgba(0,0,0,0.7);
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 20px;
+            }
+
+            .message {
+                font-size: 18px;
+            }
+
+            .poetry {
+                font-size: 17px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="container">
+<div class="card">
 
-<div id="quiz">
+    <!-- QUIZ SECTION -->
+    <div id="quiz">
 
-<h2>❤️ One Small Challenge ❤️</h2>
+        <h1>❤️ A Surprise For My Love ❤️</h1>
 
-<label>What is our daughter nick name (5 alphabets)?</label>
-<input type="text" id="q1">
+        <h2>But first... prove you're my Meme 😌❤️</h2>
 
-<label>What nickname do I call you? (4 alphabets)</label>
-<input type="text" id="q2">
+        <p>Answer these two questions to unlock your surprise.</p>
 
-<button onclick="checkAnswers()">Unlock ❤️</button>
+        <input
+            type="text"
+            id="answer1"
+            placeholder="Our daughter's nickname?"
+        >
 
-<p id="error"></p>
+        <br>
+
+        <input
+            type="text"
+            id="answer2"
+            placeholder="What do I call you?"
+        >
+
+        <br>
+
+        <button onclick="checkAnswers()">Unlock ❤️</button>
+
+        <div id="error" class="error"></div>
+
+    </div>
+
+
+    <!-- SURPRISE SECTION -->
+    <div id="surprise">
+
+        <h1 id="title">❤️ For My Meme ❤️</h1>
+
+        <div class="photo-container">
+
+            <img id="mainPhoto" src="wife-photo1.jpg" alt="Our Memory">
+
+            <div id="poetry" class="poetry" style="display:none;"></div>
+
+        </div>
+
+        <div id="message" class="message">
+            Dekho... main bhi gussa hoon. 😠❤️
+        </div>
+
+        <div id="progress" class="progress">
+            1 / 4
+        </div>
+
+        <button id="nextButton" onclick="nextPhoto()">
+            Next ❤️
+        </button>
+
+    </div>
 
 </div>
 
-<div id="surprise" style="display:none;">
-
-    <h2>❤️ Congratulations My Love ❤️</h2>
-
-    <img src="wife-photo.jpg" alt="Our Photo">
-
-    <p>
-        If you're seeing this,Thank you for filling my life with love, laughter and happiness.
-        ❤️ Forever Yours ❤️
-    </p>
-
-</div>
-`
-</div>
 
 <script>
-function checkAnswers() {
 
+    // Correct answers
     const answer1 = "meeru";
     const answer2 = "memo";
 
-    const q1 = document.getElementById("q1").value.trim().toLowerCase();
-    const q2 = document.getElementById("q2").value.trim().toLowerCase();
 
-    if(q1 === answer1 && q2 === answer2) {
-        document.getElementById("quiz").style.display = "none";
-        document.getElementById("surprise").style.display = "block";
-    } else {
-        document.getElementById("error").innerText =
-            "Oops ❤️ One or both answers are incorrect.";
+    // Photos
+    const photos = [
+        "wife-photo1.jpg",
+        "wife-photo2.jpg",
+        "wife-photo3.jpg",
+        "wife-photo4.jpg"
+    ];
+
+
+    // Messages for each photo
+    const messages = [
+
+        // Photo 1
+        "Dekho... main bhi gussa hoon. 😠❤️",
+
+        // Photo 2
+        "Lekin main apni Meme se zyada der gussa reh hi nahi sakta... " +
+        "meri zindagi tumhare bina bilkul khaali hai. ❤️<br><br>" +
+        "I love you, Meme. ❤️",
+
+        // Photo 3
+        "Meri zindagi ki do sab se qeemti cheezein... ❤️<br><br>" +
+        "Dono meri Meme se hain. ❤️",
+
+        // Photo 4
+        ""
+    ];
+
+
+    let currentPhoto = 0;
+
+
+    function checkAnswers() {
+
+        const userAnswer1 =
+            document.getElementById("answer1").value
+            .trim()
+            .toLowerCase();
+
+        const userAnswer2 =
+            document.getElementById("answer2").value
+            .trim()
+            .toLowerCase();
+
+
+        if (
+            userAnswer1 === answer1 &&
+            userAnswer2 === answer2
+        ) {
+
+            document.getElementById("quiz").style.display = "none";
+
+            document.getElementById("surprise").style.display = "block";
+
+        } else {
+
+            document.getElementById("error").innerHTML =
+                "Hmm... try again, Meme ❤️";
+
+        }
     }
-}
+
+
+    function nextPhoto() {
+
+        currentPhoto++;
+
+
+        // If we reach the final photo
+        if (currentPhoto === 3) {
+
+            document.getElementById("mainPhoto").src =
+                photos[currentPhoto];
+
+            // Hide everything except the final picture
+            document.getElementById("title").style.display = "none";
+
+            document.getElementById("message").style.display = "none";
+
+            document.getElementById("progress").style.display = "none";
+
+            document.getElementById("nextButton").style.display = "none";
+
+
+            // Final poetry
+            const poetry = document.getElementById("poetry");
+
+            poetry.innerHTML =
+                "Tum ho toh sab kuch hai,<br>" +
+                "Tum nahi toh kuch bhi nahi...<br><br>" +
+
+                "Meri har khushi tum se hai,<br>" +
+                "Meri har dua tumhare liye hai...<br><br>" +
+
+                "Bas yunhi mera haath pakar kar,<br>" +
+                "Mere saath zindagi bhar chalna... ❤️";
+
+            poetry.style.display = "block";
+
+            return;
+        }
+
+
+        // Show next photo
+        document.getElementById("mainPhoto").src =
+            photos[currentPhoto];
+
+        // Show corresponding message
+        document.getElementById("message").innerHTML =
+            messages[currentPhoto];
+
+        // Update progress
+        document.getElementById("progress").innerHTML =
+            (currentPhoto + 1) + " / 4";
+    }
+
 </script>
 
 </body>
